@@ -5,8 +5,11 @@
 # Run through curl it clones the repo to ~/.pinger first.
 set -e
 REPO="https://github.com/AdalricP/pinger.git"
-DIR="$(cd "$(dirname "$0")" 2>/dev/null && pwd)"
-if [ ! -f "$DIR/pinger.swift" ]; then
+case "$0" in
+  *install.sh) DIR="$(cd "$(dirname "$0")" && pwd)" ;;
+  *) DIR="" ;;  # piped from curl
+esac
+if [ -z "$DIR" ] || [ ! -f "$DIR/pinger.swift" ]; then
   DIR="$HOME/.pinger"
   if [ -d "$DIR/.git" ]; then git -C "$DIR" pull -q; else git clone -q "$REPO" "$DIR"; fi
 fi

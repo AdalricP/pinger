@@ -49,6 +49,6 @@ for path, events in ((claude, ["Notification"]), (codex, ["PermissionRequest", "
 PY
 
 if [ "$MODE" = "--uninstall" ]; then echo "pinger removed"; exit 0; fi
-"$DIR/pinger"
+"$DIR/pinger" </dev/null
 echo "pinger installed from $DIR. You should see a white bar on the right edge now."
 echo "Codex asks you to trust new hooks on next start (or run /hooks)."
